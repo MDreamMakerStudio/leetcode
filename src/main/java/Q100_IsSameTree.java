@@ -75,7 +75,7 @@ import java.util.List;
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Q110_IsSameTree {
+public class Q100_IsSameTree {
     boolean flag = true;
     public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) {

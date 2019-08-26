@@ -30,7 +30,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Q111_NOW {
+public class Q111_MinDepth2 {
 
     public int minDepth(TreeNode root) {
 

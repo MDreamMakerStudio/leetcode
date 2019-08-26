@@ -1,34 +1,34 @@
 /**
- * 给定一个二叉树，它的每个结点都存放着一个整数值。
+ * 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
  *
- * 找出路径和等于给定数值的路径总数。
+ * 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
  *
- * 路径不需要从根节点开始，也不需要在叶子节点结束，但是路径方向必须是向下的（只能从父节点到子节点）。
+ * 例如，给定如下二叉搜索树:  root = [6,2,8,0,4,7,9,null,null,3,5]
  *
- * 二叉树不超过1000个节点，且节点数值范围是 [-1000000,1000000] 的整数。
  *
- * 示例：
  *
- * root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
+ *  
  *
- *       10
- *      /  \
- *     5   -3
- *    / \    \
- *   3   2   11
- *  / \   \
- * 3  -2   1
+ * 示例 1:
  *
- * 返回 3。和等于 8 的路径有:
+ * 输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+ * 输出: 6
+ * 解释: 节点 2 和节点 8 的最近公共祖先是 6。
+ * 示例 2:
  *
- * 1.  5 -> 3
- * 2.  5 -> 2 -> 1
- * 3.  -3 -> 11
+ * 输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4
+ * 输出: 2
+ * 解释: 节点 2 和节点 4 的最近公共祖先是 2, 因为根据定义最近公共祖先节点可以为节点本身。
+ *  
+ *
+ * 说明:
+ *
+ * 所有节点的值都是唯一的。
+ * p、q 为不同节点且均存在于给定的二叉搜索树中。
  *
  * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/path-sum-iii
+ * 链接：https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- *
  * */
 
 /**
@@ -42,16 +42,26 @@
  */
 public class Q235_LowestCommonAncestor {
 
-    public int pathSum(TreeNode root, int sum) {
-        if(root == null) {
-            return 0;
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root.val == p.val) {
+            return p;
+        }
+        if(root.val == q.val) {
+            return q;
         }
 
-        int res = findPath(root, sum);
+        if(p.val > root.val && q.val < root.val || p.val < root.val && q.val > root.val) {
+            return root;
+        }
 
-        res += pathSum(root.left, sum);
-        res += pathSum(root.right, sum);
-        return res;
+        if(p.val > root.val && q.val > root.val) {
+            return lowestCommonAncestor(root.right, p,q);
+        }
+
+        if(p.val < root.val && q.val < root.val) {
+            return lowestCommonAncestor(root.left, p,q);
+        }
+        return root;
     }
 
     private int findPath(TreeNode root, int sum) {

@@ -18,52 +18,133 @@
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/flatten-nested-list-iterator
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ * <p>
+ * <p>
+ * 给定一个二叉树，找出其最大深度。
+ * <p>
+ * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+ * <p>
+ * 说明: 叶子节点是指没有子节点的节点。
+ * <p>
+ * 示例：
+ * 给定二叉树 [3,9,20,null,null,15,7]，
+ * <p>
+ * 3
+ * / \
+ * 9  20
+ * /  \
+ * 15   7
+ * 返回它的最大深度 3 。
+ * <p>
+ * 在真实的面试中遇到过这道题？
+ * <p>
+ * 来源：力扣（LeetCode）
+ * 链接：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree
+ * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ * <p>
+ * <p>
+ * 给定一个二叉树，找出其最大深度。
+ * <p>
+ * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+ * <p>
+ * 说明: 叶子节点是指没有子节点的节点。
+ * <p>
+ * 示例：
+ * 给定二叉树 [3,9,20,null,null,15,7]，
+ * <p>
+ * 3
+ * / \
+ * 9  20
+ * /  \
+ * 15   7
+ * 返回它的最大深度 3 。
+ * <p>
+ * 在真实的面试中遇到过这道题？
+ * <p>
+ * 来源：力扣（LeetCode）
+ * 链接：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree
+ * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ * <p>
+ * <p>
+ * 给定一个二叉树，找出其最大深度。
+ * <p>
+ * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+ * <p>
+ * 说明: 叶子节点是指没有子节点的节点。
+ * <p>
+ * 示例：
+ * 给定二叉树 [3,9,20,null,null,15,7]，
+ * <p>
+ * 3
+ * / \
+ * 9  20
+ * /  \
+ * 15   7
+ * 返回它的最大深度 3 。
+ * <p>
+ * 在真实的面试中遇到过这道题？
+ * <p>
+ * 来源：力扣（LeetCode）
+ * 链接：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree
+ * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ */
+/**
+ *
+ * 给定一个二叉树，找出其最大深度。
+ *
+ * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+ *
+ * 说明: 叶子节点是指没有子节点的节点。
+ *
+ * 示例：
+ * 给定二叉树 [3,9,20,null,null,15,7]，
+ *
+ *     3
+ *    / \
+ *   9  20
+ *     /  \
+ *    15   7
+ * 返回它的最大深度 3 。
+ *
+ * 在真实的面试中遇到过这道题？
+ *
+ * 来源：力扣（LeetCode）
+ * 链接：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree
+ * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ *
  */
 
 /**
- * // This is the interface that allows for creating nested lists.
- * // You should not implement it, or speculate about its implementation
- * public interface NestedInteger {
- * <p>
- * // @return true if this NestedInteger holds a single integer, rather than a nested list.
- * public boolean isInteger();
- * <p>
- * // @return the single integer that this NestedInteger holds, if it holds a single integer
- * // Return null if this NestedInteger holds a nested list
- * public Integer getInteger();
- * <p>
- * // @return the nested list that this NestedInteger holds, if it holds a nested list
- * // Return null if this NestedInteger holds a single integer
- * public List<NestedInteger> getList();
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
  * }
  */
-//左中右
 public class Q104_MaxDepth {
-//    public NestedIterator(List<NestedInteger> nestedList) {
-//
-//    }
-//
-//    //    @Override
-//    public Integer next() {
-//        return 0;
-//    }
-//
-//    //    @Override
-//    public boolean hasNext() {
-//        return false;
-//    }
-//
-//    public interface NestedInteger {
-//
-//        // @return true if this NestedInteger holds a single integer, rather than a nested list.
-//        public boolean isInteger();
-//
-//        // @return the single integer that this NestedInteger holds, if it holds a single integer
-//        // Return null if this NestedInteger holds a nested list
-//        public Integer getInteger();
-//
-//        // @return the nested list that this NestedInteger holds, if it holds a nested list
-//        // Return null if this NestedInteger holds a single integer
-//        public List<NestedInteger> getList();
-//    }
+    int maxDepth = 0;
+
+    public int maxDepth(TreeNode root) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        int left = maxDepth(root.left) + 1;
+        int right = maxDepth(root.right) + 1;
+
+        return left >= right ? left : right;
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
 }

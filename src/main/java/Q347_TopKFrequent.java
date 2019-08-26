@@ -21,7 +21,7 @@ import java.util.*;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  *
  * */
-public class Q247_TopKFrequent {
+public class Q347_TopKFrequent {
     public List<Integer> topKFrequent(int[] nums, int k) {
         List<Integer> res = new ArrayList<>();
         if(nums.length == 0) {
@@ -73,8 +73,8 @@ public class Q247_TopKFrequent {
         }
     }
     public static void main(String[] args) {
-        Q247_TopKFrequent q247_topKFrequent = new Q247_TopKFrequent();
+        Q347_TopKFrequent q347_topKFrequent = new Q347_TopKFrequent();
         int[] nums = {1,1,1,2,2,3};
-        q247_topKFrequent.topKFrequent(nums, 2);
+        q347_topKFrequent.topKFrequent(nums, 2);
     }
 }

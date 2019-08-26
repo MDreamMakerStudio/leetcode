@@ -1,4 +1,4 @@
-package test;
+package atest;
 
 public class ClassA{
     public int arg;

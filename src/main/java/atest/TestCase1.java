@@ -1,6 +1,5 @@
-package test;
+package atest;
 
-import test.ClassA;
 
 public class TestCase1 {
     public static ClassA getClassA(int arg) {

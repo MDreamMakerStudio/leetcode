@@ -1,28 +1,26 @@
 /**
+ * 给出一个完全二叉树，求出该树的节点个数。
  *
- * 给定一个二叉树，检查它是否是镜像对称的。
+ * 说明：
  *
- * 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+ * 完全二叉树的定义如下：在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。若最底层为第 h 层，则该层包含 1~ 2h 个节点。
  *
+ * 示例:
+ *
+ * 输入:
  *     1
  *    / \
- *   2   2
- *  / \ / \
- * 3  4 4  3
- * 但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:
+ *   2   3
+ *  / \  /
+ * 4  5 6
  *
- *     1
- *    / \
- *   2   2
- *    \   \
- *    3    3
- *
+ * 输出: 6
  *
  * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/symmetric-tree
+ * 链接：https://leetcode-cn.com/problems/count-complete-tree-nodes
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+ *
  * */
-
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -33,73 +31,36 @@
  * }
  */
 public class Q222_CountTreeNodes {
-    boolean flag = true;
-    public boolean isSymmetric(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-        TreeNode leftTreeNode = new TreeNode(root.val);
-        leftTreeNode.left = root.left;
-        TreeNode rightTreeNode = new TreeNode(root.val);
-        rightTreeNode.right = root.right;
-        inverseRightTree(rightTreeNode);
-
-        return isSameTree(leftTreeNode, rightTreeNode);
-    }
-
-    private boolean isSameTree(TreeNode p, TreeNode q) {
-        if (p == null && q == null) {
-            return true;
-        }
-
-        if (p == null && q != null) {
-            flag = false;
-            return false;
-        }
-
-        if (p != null && q == null) {
-            flag = false;
-            return false;
-        }
-
-        if(p.val != q.val) {
-            flag = false;
-            return false;
-        }
-        if(flag) {
-            isSameTree(p.left, q.left);
-            isSameTree(p.right, q.right);
-        }
-
-        return flag;
-    }
-
-    private void inverseRightTree(TreeNode root) {
+    int count = 0;
+    public int countNodes(TreeNode root) {
         if(root == null) {
-            return;
+            return 0;
         }
-        inverseRightTree(root.left);
-        inverseRightTree(root.right);
-        swap(root);
-    }
 
-    private void swap(TreeNode root) {
-        TreeNode tmp = root.left;
-        root.left = root.right;
-        root.right = tmp;
+        countNodes(root.left);
+        countNodes(root.right);
+        return ++count;
     }
 
 
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode(int x) { val = x; }
+        public TreeNode(int x) { val = x; }
 
         public TreeNode(int val, TreeNode left, TreeNode right) {
             this.val = val;
             this.left = left;
             this.right = right;
         }
+    }
+
+    public static void main(String[] args) {
+        Q222_CountTreeNodes q222_countTreeNodes = new Q222_CountTreeNodes();
+//        TreeNode treeNode = new TreeNode(2, new TreeNode(4, null, null), new TreeNode(5, null, null));
+        TreeNode treeNode = new TreeNode(2, new TreeNode(4, null, null), new TreeNode(5, new TreeNode(6, null,null), null));
+        int i = q222_countTreeNodes.countNodes(treeNode);
+        System.out.println(i);
     }
 }

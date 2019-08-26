@@ -40,7 +40,7 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
-public class Q2306_0822 {
+public class Q236_0822 {
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if(root.val == p.val) {

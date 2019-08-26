@@ -35,7 +35,7 @@ import java.util.Stack;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 
-public class Q20_TODO {
+public class Q20_ValidateMark {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<Character>();
         for (int i = 0; i < s.length(); i++) {
@@ -68,7 +68,7 @@ public class Q20_TODO {
     }
 
     public static void main(String[] args) {
-        Q20_TODO q20_todo = new Q20_TODO();
-        System.out.println(q20_todo.isValid("()"));
+        Q20_ValidateMark q20_validateMark = new Q20_ValidateMark();
+        System.out.println(q20_validateMark.isValid("()[]{}"));
     }
 }

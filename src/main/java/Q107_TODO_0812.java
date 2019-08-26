@@ -39,7 +39,7 @@ import java.util.List;
  */
 
 
-public class Q107_LevelOrder {
+public class Q107_TODO_0812 {
 
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
@@ -121,7 +121,7 @@ public class Q107_LevelOrder {
     public static void main(String[] args) {
 //  [3,9,20,null,null,15,7]
         TreeNode treeNode = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
-        Q107_LevelOrder levelOrder = new Q107_LevelOrder();
+        Q107_TODO_0812 levelOrder = new Q107_TODO_0812();
         levelOrder.levelOrder(treeNode);
     }
 }

@@ -1,25 +1,30 @@
 /**
- * 给定一个二叉树，找出其最小深度。
- * <p>
- * 最小深度是从根节点到最近叶子节点的最短路径上的节点数量。
- * <p>
+ * 给定一个二叉树，返回所有从根节点到叶子节点的路径。
+ *
  * 说明: 叶子节点是指没有子节点的节点。
- * <p>
+ *
  * 示例:
- * <p>
- * 给定二叉树 [3,9,20,null,null,15,7],
- * <p>
- * 3
- * / \
- * 9  20
- * /  \
- * 15   7
- * 返回它的最小深度  2.
- * <p>
+ *
+ * 输入:
+ *
+ *    1
+ *  /   \
+ * 2     3
+ *  \
+ *   5
+ *
+ * 输出: ["1->2->5", "1->3"]
+ *
+ * 解释: 所有根节点到叶子节点的路径为: 1->2->5, 1->3
+ *
  * 来源：力扣（LeetCode）
- * 链接：https://leetcode-cn.com/problems/minimum-depth-of-binary-tree
+ * 链接：https://leetcode-cn.com/problems/binary-tree-paths
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
- */
+ *
+ * */
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Definition for a binary tree node.
@@ -32,22 +37,44 @@
  */
 public class Q257_BinaryTreePaths {
 
-    public int minDepth(TreeNode root) {
+    List<String> ret = new ArrayList<>();
+    public List<String> binaryTreePaths(TreeNode root) {
+        if(root == null) {
+            return ret;
+        }
+        if(root.left == null && root.right == null) {
+            //加入当前节点在
+            ret.add(String.valueOf(root.val));
+            return ret;
+        }
+        return binaryTreePath(root, "");
 
-        if (root == null) {
-            return 0;
+    }
+
+    private List<String> binaryTreePath(TreeNode root, String path) {
+
+        if(root.left == null && root.right == null) {
+            //加入当前节点在
+            ret.add(path + "->" + root.val);
+            return ret;
+        }
+        String newPath;
+        if("".equals(path)) {
+            newPath = String.valueOf(root.val);
+        } else {
+            newPath = path + "->" + root.val;
         }
 
-        int left = 1+ minDepth(root.left);
-        int right = 1+ minDepth(root.right);
 
-        if(root.left == null && root.right != null) {
-            return right;
+        if(root.left != null) {
+            binaryTreePath(root.left, newPath);
         }
-        if(root.right == null && root.left != null) {
-            return left;
+
+        if(root.right != null) {
+            binaryTreePath(root.right, newPath);
         }
-        return left < right ? left : right;
+
+        return ret;
     }
 
 
